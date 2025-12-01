@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[200];
+    char *token;
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    // Remove newline character if present
+    str[strcspn(str, "\n")] = '\0';
+
+    // Get the first token (substring)
+    token = strtok(str, " ");  // Delimiter is space
+
+    // Loop through the string to extract all other tokens
+    while (token != NULL) {
+        printf("Substring: %s\n", token);
+        token = strtok(NULL, " ");
+    }
+
+    return 0;
+}
