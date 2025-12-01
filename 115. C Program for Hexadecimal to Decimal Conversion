@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main() {
+    unsigned int hex, decimal;
+
+    printf("Enter a hexadecimal number (without 0x): ");
+    scanf("%x", &hex);  // %x reads hexadecimal input
+
+    decimal = hex;
+
+    printf("Decimal equivalent: %u\n", decimal);
+
+    return 0;
+}
