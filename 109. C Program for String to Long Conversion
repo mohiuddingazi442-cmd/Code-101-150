@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    char str[50];
+    long num;
+
+    printf("Enter a string number: ");
+    gets(str);        // for exam purpose
+
+    num = atol(str);  // string to long
+
+    printf("Long value: %ld\n", num);
+
+    return 0;
+}
