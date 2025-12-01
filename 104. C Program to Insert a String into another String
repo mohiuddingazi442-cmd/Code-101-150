@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str1[200], str2[100];
+    int pos, i, j;
+
+    printf("Enter the first string: ");
+    gets(str1);  // for exam purposes, otherwise use fgets
+
+    printf("Enter the string to insert: ");
+    gets(str2);
+
+    printf("Enter the position to insert (starting from 0): ");
+    scanf("%d", &pos);
+
+    int len1 = strlen(str1);
+    int len2 = strlen(str2);
+
+    // Check if position is valid
+    if(pos < 0 || pos > len1) {
+        printf("Invalid position!\n");
+        return 1;
+    }
+
+    // Move the part of str1 after pos to make space for str2
+    for(i = len1 - 1; i >= pos; i--) {
+        str1[i + len2] = str1[i];
+    }
+
+    // Insert str2 into str1 at pos
+    for(i = 0; i < len2; i++) {
+        str1[pos + i] = str2[i];
+    }
+
+    str1[len1 + len2] = '\0';  // Null terminate
+
+    printf("Resulting string: %s\n", str1);
+
+    return 0;
+}
