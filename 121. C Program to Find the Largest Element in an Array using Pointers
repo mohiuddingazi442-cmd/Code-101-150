@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    int arr[] = {12, 45, 2, 67, 34};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int *ptr = arr; // pointer to the first element of the array
+    int max = *ptr; // initialize max with first element
+
+    for (int i = 1; i < n; i++) {
+        if (*(ptr + i) > max) { // compare using pointer arithmetic
+            max = *(ptr + i);
+        }
+    }
+
+    printf("The largest element in the array is: %d\n", max);
+    return 0;
+}
