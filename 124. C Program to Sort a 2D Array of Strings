@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+
+#define ROWS 5
+#define COLS 20
+
+int main() {
+    char arr[ROWS][COLS] = {"Banana", "Apple", "Orange", "Mango", "Grapes"};
+    char temp[COLS];
+
+    // Sorting strings using bubble sort
+    for (int i = 0; i < ROWS - 1; i++) {
+        for (int j = i + 1; j < ROWS; j++) {
+            if (strcmp(arr[i], arr[j]) > 0) {
+                // Swap strings
+                strcpy(temp, arr[i]);
+                strcpy(arr[i], arr[j]);
+                strcpy(arr[j], temp);
+            }
+        }
+    }
+
+    // Print sorted array
+    printf("Sorted strings:\n");
+    for (int i = 0; i < ROWS; i++) {
+        printf("%s\n", arr[i]);
+    }
+
+    return 0;
+}
