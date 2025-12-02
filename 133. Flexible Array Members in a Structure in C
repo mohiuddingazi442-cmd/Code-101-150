@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Student {
+    int id;
+    int n;
+    int marks[];   // Flexible Array Member
+};
+
+int main() {
+    struct Student *s;
+    int i;
+
+    /* Allocate memory for structure + flexible array */
+    s = (struct Student *)malloc(sizeof(struct Student) + 5 * sizeof(int));
+
+    if (s == NULL) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
+
+    s->id = 101;
+    s->n = 5;
+
+    printf("Enter %d marks:\n", s->n);
+    for (i = 0; i < s->n; i++) {
+        scanf("%d", &s->marks[i]);
+    }
+
+    printf("\nStudent ID: %d\nMarks: ", s->id);
+    for (i = 0; i < s->n; i++) {
+        printf("%d ", s->marks[i]);
+    }
+
+    free(s);
+    return 0;
+}
