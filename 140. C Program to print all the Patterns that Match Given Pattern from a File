@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char filename[100], pattern[100], line[1000];
+    FILE *fp;
+    int found = 0;
+
+    // Input file name and pattern
+    printf("Enter file name: ");
+    scanf("%s", filename);
+
+    printf("Enter pattern to search: ");
+    scanf("%s", pattern);
+
+    // Open file in read mode
+    fp = fopen(filename, "r");
+    if (fp == NULL) {
+        printf("Error: Unable to open file.\n");
+        return 1;
+    }
+
+    printf("\nLines matching pattern \"%s\":\n", pattern);
+
+    // Read file line by line
+    while (fgets(line, sizeof(line), fp) != NULL) {
+        // Check if pattern exists in the line
+        if (strstr(line, pattern) != NULL) {
+            printf("%s", line);
+            found++;
+        }
+    }
+
+    if (found == 0) {
+        printf("No matching pattern found in the file.\n");
+    }
+
+    fclose(fp);
+    return 0;
+}
