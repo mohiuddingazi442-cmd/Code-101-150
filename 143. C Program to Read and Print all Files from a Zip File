@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <zip.h>
+
+int main() {
+    char zipFilename[100];
+    struct zip *z;
+    struct zip_file *zf;
+    struct zip_stat st;
+    char *contents;
+    int i, err;
+
+    // Input ZIP file name
+    printf("Enter ZIP file name: ");
+    scanf("%s", zipFilename);
+
+    // Open ZIP archive
+    z = zip_open(zipFilename, 0, &err);
+    if (z == NULL) {
+        printf("Error: Cannot open ZIP file.\n");
+        return 1;
+    }
+
+    int numFiles = zip_get_num_entries(z, 0);
+    printf("Number of files in ZIP: %d\n\n", numFiles);
+
+    // Iterate over all files in ZIP
+    for (i = 0; i < numFiles; i++) {
+        zip_stat_index(z, i, 0, &st);
+        printf("File: %s\n", st.name);
+
+        zf = zip_fopen_index(z, i, 0);
+        if (!zf) {
+            printf("Cannot open file %s in ZIP.\n", st.name);
+            continue;
+        }
+
+        contents = (char *)malloc(st.size + 1);
+        zip_fread(zf, contents, st.size);
+        contents[st.size] = '\0'; // Null-terminate
+        printf("Contents:\n%s\n\n", contents);
+
+        free(contents);
+        zip_fclose(zf);
+    }
+
+    zip_close(z);
+    return 0;
+}
