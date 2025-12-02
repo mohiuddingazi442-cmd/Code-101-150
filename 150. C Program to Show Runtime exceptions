@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    // 1. Division by zero
+    int a = 10, b = 0;
+    // Uncommenting this will cause a runtime error (undefined behavior)
+    // int c = a / b;
+    // printf("Result: %d\n", c);
+
+    // 2. Null pointer dereference
+    int *ptr = NULL;
+    // Uncommenting this will cause a runtime error (segmentation fault)
+    // printf("Value at ptr: %d\n", *ptr);
+
+    // 3. Array out-of-bounds access
+    int arr[3] = {1, 2, 3};
+    // Uncommenting this will cause a runtime error (may cause crash or garbage value)
+    // printf("Out of bounds: %d\n", arr[5]);
+
+    printf("Runtime exception examples are commented to prevent crash.\n");
+    printf("Uncomment one at a time to see the effect.\n");
+
+    return 0;
+}
