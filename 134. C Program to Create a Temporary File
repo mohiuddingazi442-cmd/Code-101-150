@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main() {
+    FILE *fp;
+    char str[100];
+
+    /* Create temporary file */
+    fp = tmpfile();
+
+    if (fp == NULL) {
+        printf("Unable to create temporary file\n");
+        return 1;
+    }
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    /* Write to temporary file */
+    fputs(str, fp);
+
+    /* Move file pointer to beginning */
+    rewind(fp);
+
+    /* Read from temporary file */
+    printf("\nData from temporary file:\n");
+    while (fgets(str, sizeof(str), fp) != NULL) {
+        printf("%s", str);
+    }
+
+    fclose(fp);   // File deleted automatically
+
+    return 0;
+}
