@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <time.h>
+
+int main() {
+    int day, month, year;
+    char *months[] = { "January", "February", "March", "April", "May", "June",
+                       "July", "August", "September", "October", "November", "December" };
+
+    // Get current date from system
+    time_t t = time(NULL);
+    struct tm *tm_info = localtime(&t);
+
+    day = tm_info->tm_mday;
+    month = tm_info->tm_mon + 1; // tm_mon is 0-11
+    year = tm_info->tm_year + 1900; // tm_year is years since 1900
+
+    printf("Current Date in Different Formats:\n");
+
+    // Format 1: DD/MM/YYYY
+    printf("1. %02d/%02d/%d\n", day, month, year);
+
+    // Format 2: MM-DD-YYYY
+    printf("2. %02d-%02d-%d\n", month, day, year);
+
+    // Format 3: Month Day, Year
+    printf("3. %s %d, %d\n", months[month - 1], day, year);
+
+    // Format 4: YYYY.MM.DD
+    printf("4. %d.%02d.%02d\n", year, month, day);
+
+    return 0;
+}
